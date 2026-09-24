@@ -1,0 +1,187 @@
+.MOMO{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: #ffd877;
+    padding: 10px;
+    border-radius: 10px;
+}
+h2{
+    text-align: center;
+}
+p{
+    font-size: 20px;
+}
+/* ==========================================================================
+   1. DESKTOP STYLES (For computers and tablets)
+   ========================================================================== */
+.envelope-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px; /* Kept large to keep everything safe from the header */
+    margin-bottom: 300px; 
+    width: 100%;
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: 600px;  
+    height: 400px; 
+    cursor: pointer;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #f39fa9; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    border-radius: 0 0 10px 10px;
+    overflow: hidden; 
+    transition: overflow 0.1s step-end;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 300px solid transparent;  
+    border-right: 300px solid transparent; 
+    border-top: 205px solid #f08080; 
+    transform-origin: top;
+    transition: transform 0.4s ease, z-index 0.2s;
+    z-index: 5; 
+}
+
+.letter {
+    position: absolute;
+    bottom: -350px; 
+    left: 30px;
+    width: 540px; 
+    height: 360px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: transform 0.5s ease 0.25s; 
+    z-index: 2; 
+    border-radius: 8px;
+    overflow-y: auto;
+}
+
+.letter-text {
+    padding: 25px; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    font-size: 15px; 
+    line-height: 1.6;
+}
+.letter-text h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #e56b6f;
+}
+
+.front-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 300px solid #ffa07a;
+    border-top: 200px solid transparent;
+    border-bottom: 200px solid #ffa07a;
+    z-index: 4;
+}
+
+.front-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-right: 300px solid #ffa07a;
+    border-top: 200px solid transparent;
+    border-bottom: 200px solid #ffa07a;
+    z-index: 4;
+}
+
+.front-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 300px solid transparent;
+    border-right: 300px solid transparent;
+    border-bottom: 200px solid #f88379;
+    z-index: 4;
+    border-radius: 0 0 10px 10px;
+}
+
+/* ANIMATION STATES (Desktop) */
+.envelope-wrapper.open .envelope { overflow: visible; }
+.envelope-wrapper.open .flap { transform: rotateX(180deg); z-index: 1; }
+.envelope-wrapper.open .letter { transform: translateY(-380px); z-index: 6; height: 480px; }
+
+
+/* ==========================================================================
+   2. MOBILE BREAKPOINT STYLES (Triggers automatically on phone displays)
+   ========================================================================== */
+@media screen and (max-width: 650px) {
+    .envelope-container {
+        /* Extra margin to guarantee the smaller open flap never clips the nav bar */
+        margin-top: 260px; 
+        margin-bottom: 200px;
+    }
+
+    .envelope-wrapper {
+        width: 320px;  
+        height: 220px; 
+    }
+
+    /* Recalculating smaller geometric borders to fit the phone screen scale */
+    .flap {
+        border-left: 160px solid transparent;  
+        border-right: 160px solid transparent; 
+        border-top: 115px solid #f08080; 
+    }
+
+    .letter {
+        bottom: -200px; 
+        left: 15px;
+        width: 290px; 
+        height: 200px;
+    }
+
+    .letter-text {
+        padding: 15px;
+        font-size: 13px; /* Smaller, neat paragraph text text for mobile views */
+    }
+
+    .front-left {
+        border-left: 160px solid #ffa07a;
+        border-top: 110px solid transparent;
+        border-bottom: 110px solid #ffa07a;
+    }
+
+    .front-right {
+        border-right: 160px solid #ffa07a;
+        border-top: 110px solid transparent;
+        border-bottom: 110px solid #ffa07a;
+    }
+
+    .front-bottom {
+        border-left: 160px solid transparent;
+        border-right: 160px solid transparent;
+        border-bottom: 110px solid #f88379;
+    }
+
+    /* Mobile-specific rising limits to avoid breaking your top layout boundaries */
+    .envelope-wrapper.open .letter {
+        transform: translateY(-210px); 
+        height: 300px; 
+    }
+}
